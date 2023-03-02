@@ -1,0 +1,93 @@
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.csproj.AssemblyReference.cache
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.AssemblyInfoInputs.cache
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.AssemblyInfo.cs
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.csproj.CoreCompileInputs.cache
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.RazorAssemblyInfo.cache
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.RazorAssemblyInfo.cs
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\appsettings.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\Setup.staticwebassets.runtime.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\Setup.exe
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\Setup.deps.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\Setup.runtimeconfig.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\Setup.dll
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\bin\Debug\net7.0\Setup.pdb
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.Setup.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.build.Setup.props
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Setup.props
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Setup.props
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\scopedcss\bundle\Setup.styles.css
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\scopedcss\projectbundle\Setup.bundle.scp.css
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.dll
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\refint\Setup.dll
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.pdb
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\Setup.genruntimeconfig.cache
+C:\Users\xr0133363\source\repos\_Server Technology 2223\Setup\Setup\obj\Debug\net7.0\ref\Setup.dll
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\appsettings.Development.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\appsettings.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\Setup.staticwebassets.runtime.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\Setup.exe
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\Setup.deps.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\Setup.runtimeconfig.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\Setup.dll
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\bin\Debug\net7.0\Setup.pdb
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.csproj.AssemblyReference.cache
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.GeneratedMSBuildEditorConfig.editorconfig
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.AssemblyInfoInputs.cache
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.AssemblyInfo.cs
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.csproj.CoreCompileInputs.cache
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.MvcApplicationPartsAssemblyInfo.cache
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.RazorAssemblyInfo.cache
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.RazorAssemblyInfo.cs
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.Setup.Microsoft.AspNetCore.StaticWebAssets.props
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.build.Setup.props
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Setup.props
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Setup.props
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\staticwebassets.pack.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\staticwebassets.build.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\staticwebassets.development.json
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\scopedcss\bundle\Setup.styles.css
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\scopedcss\projectbundle\Setup.bundle.scp.css
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.dll
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\refint\Setup.dll
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.pdb
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\Setup.genruntimeconfig.cache
+D:\My Documents\Studie\Reparatie\Webdev 2023\Server Technology\Setup v1.0\Setup\Setup\obj\Debug\net7.0\ref\Setup.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\appsettings.Development.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\appsettings.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Setup.staticwebassets.runtime.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Setup.exe
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Setup.deps.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Setup.runtimeconfig.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Setup.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Setup.pdb
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.csproj.AssemblyReference.cache
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.AssemblyInfoInputs.cache
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.AssemblyInfo.cs
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.csproj.CoreCompileInputs.cache
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.MvcApplicationPartsAssemblyInfo.cache
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.RazorAssemblyInfo.cache
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.RazorAssemblyInfo.cs
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\staticwebassets\msbuild.Setup.Microsoft.AspNetCore.StaticWebAssets.props
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\staticwebassets\msbuild.build.Setup.props
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Setup.props
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Setup.props
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\staticwebassets.pack.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\staticwebassets.build.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\staticwebassets.development.json
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\scopedcss\bundle\Setup.styles.css
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\scopedcss\projectbundle\Setup.bundle.scp.css
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\refint\Setup.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.pdb
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.genruntimeconfig.cache
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\ref\Setup.dll

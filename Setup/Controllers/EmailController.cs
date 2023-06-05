@@ -43,7 +43,7 @@ namespace Setup.Controllers
         static async Task Execute(ContactMail contactMail)
         {
             var verifiedEmailSenderAddress = "kdr.entertainment.dev@gmail.com";
-            var emailReceiverAddress = "koenraad.drost@gmail.com";
+            var emailReceiverAddress = "kdr.devmail@gmail.com";
 
             var apiKey = "";
             var client = new SendGridClient(apiKey);

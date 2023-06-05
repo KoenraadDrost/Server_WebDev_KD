@@ -91,3 +91,7 @@ D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\refint\Setup.
 D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.pdb
 D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.genruntimeconfig.cache
 D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\ref\Setup.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\SendGrid.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\StarkbankEcdsa.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.csproj.CopyComplete

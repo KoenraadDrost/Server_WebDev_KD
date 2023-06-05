@@ -1,4 +1,22 @@
+var KdrAllowedOrigins = "_kdrAllowedOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+// TODO: Might want to change cors routing to safer method later
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: KdrAllowedOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://127.0.0.1:5500",
+                                "http://127.0.0.1:5501",
+                                "http://localhost:5500",
+                                "http://localhost:5501",
+                                "http://localhost:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -15,10 +33,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
+// TODO: Might want to change cors routing to safer method later
+app.UseCors(KdrAllowedOrigins);
+
 app.UseAuthorization();
+app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",

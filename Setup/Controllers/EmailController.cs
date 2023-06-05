@@ -45,7 +45,7 @@ namespace Setup.Controllers
             var verifiedEmailSenderAddress = "kdr.entertainment.dev@gmail.com";
             var emailReceiverAddress = "koenraad.drost@gmail.com";
 
-            var apiKey = "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";
+            var apiKey = "";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(verifiedEmailSenderAddress, "[KDR-webdev] Sendgridmail");
             var subject = "[KDR-webdev]" + contactMail.Subject;

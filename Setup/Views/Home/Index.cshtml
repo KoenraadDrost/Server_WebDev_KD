@@ -1,9 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var views = @Context.Request.Cookies["PageViews"]; //string instead of var might unintentialy convert null
+    if (views == null || views == default) views = "0";
 }
 
 <div class="text-center">
     <h1 class="display-4">Setup</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>Deze view is X keer bekeken</p>
+    <p>Deze view is @views keer bekeken</p>
 </div>

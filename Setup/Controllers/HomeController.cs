@@ -17,6 +17,7 @@ namespace Setup.Controllers
 
         public IActionResult Index()
         {
+            UpdatePageViewCookie();
             return View();
         }
 

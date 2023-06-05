@@ -1,0 +1,32 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using SendGrid.Helpers.Mail;
+using SendGrid;
+using Setup.Models;
+using System.Text.Json;
+
+namespace Setup.Controllers
+{
+    public class ContactController : Controller
+    {
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("Submit")]
+        public IActionResult Submit(ContactMail contactMail )
+        {
+            HttpClient client = new HttpClient();
+            string jsonString = JsonSerializer.Serialize<ContactMail>(contactMail);
+            HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7095/api/Email");
+            httpRequest.Content = new StringContent(jsonString);
+
+            client.SendAsync(httpRequest).Wait();
+
+            return View("Index");
+        }
+    }
+}

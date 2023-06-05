@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text;
+using System.Text.Json.Nodes;
 
 namespace Setup.Controllers
 {
@@ -45,7 +46,26 @@ namespace Setup.Controllers
             var verifiedEmailSenderAddress = "kdr.entertainment.dev@gmail.com";
             var emailReceiverAddress = "kdr.devmail@gmail.com";
 
+            // To keep API-key from public and GitRepo.
+            string fileName = "sendgrid_APIkey.json";
+            string path = Path.Combine(Environment.CurrentDirectory, @"..\Restricted\", fileName);
+
             var apiKey = "";
+            using (StreamReader r = new StreamReader(path))
+            {
+                string json = r.ReadToEnd();
+                Console.WriteLine(json);
+                JsonNode keyNode = JsonNode.Parse(json)!;
+                Console.WriteLine(keyNode.ToString());
+                apiKey = (string)keyNode!["ApiKey"]!;
+            }
+
+            if (apiKey == "")
+            {
+                Console.WriteLine("apikey is empty.");
+                return;
+            }
+
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(verifiedEmailSenderAddress, "[KDR-webdev] Sendgridmail");
             var subject = "[KDR-webdev]" + contactMail.Subject;

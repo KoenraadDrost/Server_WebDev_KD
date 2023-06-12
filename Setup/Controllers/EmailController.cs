@@ -38,7 +38,7 @@ namespace Setup.Controllers
             ContactMail? contactMail = JsonSerializer.Deserialize<ContactMail>(requestContent);
 
             //TODO: reënable mail sending
-            //Execute(contactMail).Wait();
+            Execute(contactMail).Wait();
         }
 
         static async Task Execute(ContactMail contactMail)
@@ -75,6 +75,8 @@ namespace Setup.Controllers
                 $"<strong>Mail sent in name of: {contactMail.Name}, Email Address: <a>{contactMail.Email}</a> .</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
+
+            Console.WriteLine(response);
         }
     }
 }

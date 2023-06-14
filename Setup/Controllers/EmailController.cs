@@ -23,10 +23,11 @@ namespace Setup.Controllers
         private static readonly string path = Path.Combine(Environment.CurrentDirectory, @"..\Restricted\", jsonFileName);
 
         [HttpPost]
-        public async Task PostAsync()
+        public async Task<ObjectResult> PostAsync()
         {
             //TODO: Remove testprint
             Console.WriteLine("Email POST triggered");
+            string jsonResponse;
 
             var request = HttpContext.Request;
             var requestContent = "";
@@ -55,7 +56,8 @@ namespace Setup.Controllers
             if (recaptchaSecret == "")
             {
                 Console.WriteLine("captcha apikey is empty.");
-                return;
+                jsonResponse = JsonSerializer.Serialize("No captcha provided");
+                return BadRequest(jsonResponse);
             }
 
             //string recaptchaResponse = "$_POST['recaptchaResponse']";
@@ -71,6 +73,9 @@ namespace Setup.Controllers
 
             //TODO: reënable mail sending
             //Execute(contactMail).Wait();
+
+            jsonResponse = JsonSerializer.Serialize("Email sent succesfully");
+            return Ok(jsonResponse);
         }
 
         static async Task Execute(ContactMail contactMail)

@@ -41,6 +41,12 @@ namespace Setup.Controllers
 
             ContactMail? contactMail = JsonSerializer.Deserialize<ContactMail>(requestContent);
 
+            if(contactMail == null)
+            {
+                jsonResponse = JsonSerializer.Serialize("ERROR: Could not reconstitute email.");
+                return BadRequest(jsonResponse);
+            }
+
             string recaptchaUrl = "https://www.google.com/recaptcha/api/siteverify"; // URL to the reCAPTCHA server
             string recaptchaSecret = ""; // Secret key
             using (StreamReader r = new StreamReader(path))
@@ -52,7 +58,7 @@ namespace Setup.Controllers
 
             if (recaptchaSecret == "")
             {
-                jsonResponse = JsonSerializer.Serialize("reCaptcha ERROR sk1");
+                jsonResponse = JsonSerializer.Serialize("ERROR: reCaptcha sk1");
                 return BadRequest(jsonResponse);
             }
 

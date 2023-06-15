@@ -11,8 +11,6 @@ using System.Text.Json.Nodes;
 
 namespace Setup.Controllers
 {
-
-    // SendGrid API KEY: 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
     // <hostingUrl>/api/Email
     [Route("api/[controller]")]
     [ApiController]
@@ -49,19 +47,17 @@ namespace Setup.Controllers
             {
                 string json = r.ReadToEnd();
                 JsonNode keyNode = JsonNode.Parse(json)!;
-                Console.WriteLine($"jsonNode = {keyNode}");
                 recaptchaSecret = (string)keyNode!["ReCaptchaSecret"]!;
             }
 
             if (recaptchaSecret == "")
             {
-                Console.WriteLine("captcha apikey is empty.");
-                jsonResponse = JsonSerializer.Serialize("No captcha provided");
+                jsonResponse = JsonSerializer.Serialize("reCaptcha ERROR sk1");
                 return BadRequest(jsonResponse);
             }
 
-            //string recaptchaResponse = "$_POST['recaptchaResponse']";
-            //$recaptcha = file_get_contents($recaptcha_url.'?secret='.$recaptcha_secret.'&response='.$recaptcha_response); // Send request to the server
+            string recaptchaResponse = contactMail.Verification;
+            //recaptcha = file_get_contents($recaptcha_url.'?secret='.$recaptcha_secret.'&response='.$recaptcha_response); // Send request to the server
             //$recaptcha = json_decode($recaptcha); // Decode the JSON response
             //if ($recaptcha->success == true && $recaptcha->score >= 0.5 && $recaptcha->action == "contact"){ // If the response is valid
             //    // run email send routine

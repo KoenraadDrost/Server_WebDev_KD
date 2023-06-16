@@ -16,6 +16,7 @@ namespace Setup.Controllers
     [ApiController]
     public class EmailController : ControllerBase
     {
+        private static readonly HttpClient client = new HttpClient();
         // To keep API-keys from public and GitRepo.
         private static readonly string jsonFileName = "APIkey.json";
         private static readonly string path = Path.Combine(Environment.CurrentDirectory, @"..\Restricted\", jsonFileName);
@@ -27,6 +28,7 @@ namespace Setup.Controllers
             Console.WriteLine("Email POST triggered");
             string jsonResponse;
 
+            // <-- Deserialize the requestdata and turn it into an Contactmail implementation -->
             var request = HttpContext.Request;
             var requestContent = "";
             request.EnableBuffering();
@@ -47,7 +49,35 @@ namespace Setup.Controllers
                 return BadRequest(jsonResponse);
             }
 
-            string recaptchaUrl = "https://www.google.com/recaptcha/api/siteverify"; // URL to the reCAPTCHA server
+            int CaptchaVerificationResult = await VerifyReCaptcha(contactMail);
+
+            if (CaptchaVerificationResult == -1)
+            {
+                jsonResponse = JsonSerializer.Serialize("ERROR: reCaptcha sk1");
+                return BadRequest(jsonResponse);
+            }
+
+            if (CaptchaVerificationResult == 0)
+            {
+                jsonResponse = JsonSerializer.Serialize("ERROR: Captcha failed");
+                return BadRequest(jsonResponse);
+            }
+
+            //TODO: reënable mail sending
+            //Execute(contactMail).Wait();
+
+            jsonResponse = JsonSerializer.Serialize("Email sent succesfully");
+            return Ok(jsonResponse);
+        }
+
+        /// <summary>
+        /// Connects with Google ReCAPTCHA API to verify user CAPTCHA.
+        /// Returns int indicating if ReCAPTCHA verification was passed succesfully.
+        /// </summary>
+        /// <returns> int: -1 = SecretKey Failure, 0 = CAPTCHA failed, 1 = CAPTCHA passed </returns>
+        public async Task<int> VerifyReCaptcha(ContactMail contactMail)
+        {
+            // <-- Preperation for reCAPTCHA Verification request -->
             string recaptchaSecret = ""; // Secret key
             using (StreamReader r = new StreamReader(path))
             {
@@ -56,13 +86,22 @@ namespace Setup.Controllers
                 recaptchaSecret = (string)keyNode!["ReCaptchaSecret"]!;
             }
 
-            if (recaptchaSecret == "")
+            if(recaptchaSecret == "")
             {
-                jsonResponse = JsonSerializer.Serialize("ERROR: reCaptcha sk1");
-                return BadRequest(jsonResponse);
+                return -1;
             }
 
-            string recaptchaResponse = contactMail.Verification;
+            // <-- Construct reCAPTCHA API verification and Execute -->
+            string responseToken = contactMail.Verification;
+            string recaptchaUrl = "https://www.google.com/recaptcha/api/siteverify"; // URL to the reCAPTCHA server
+            HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), recaptchaUrl);
+
+            // https://www.youtube.com/watch?v=t-SVLZxC6CQ
+            // https://developers.google.com/recaptcha/docs/verify
+
+
+
+            //string recaptchaResponse = contactMail.Verification;
             //recaptcha = file_get_contents($recaptcha_url.'?secret='.$recaptcha_secret.'&response='.$recaptcha_response); // Send request to the server
             //$recaptcha = json_decode($recaptcha); // Decode the JSON response
             //if ($recaptcha->success == true && $recaptcha->score >= 0.5 && $recaptcha->action == "contact"){ // If the response is valid
@@ -73,11 +112,7 @@ namespace Setup.Controllers
             //    $error_output = 'Something went wrong. Please try again later'; // Error message
             //}
 
-            //TODO: reënable mail sending
-            //Execute(contactMail).Wait();
-
-            jsonResponse = JsonSerializer.Serialize("Email sent succesfully");
-            return Ok(jsonResponse);
+            return 1;
         }
 
         static async Task Execute(ContactMail contactMail)

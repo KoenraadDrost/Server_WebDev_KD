@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text;
 using System.Text.Json.Nodes;
+using System.Net;
 
 namespace Setup.Controllers
 {
@@ -24,8 +25,6 @@ namespace Setup.Controllers
         [HttpPost]
         public async Task<ObjectResult> PostAsync()
         {
-            //TODO: Remove testprint
-            Console.WriteLine("Email POST triggered");
             string jsonResponse;
 
             // <-- Deserialize the requestdata and turn it into an Contactmail implementation -->
@@ -37,9 +36,6 @@ namespace Setup.Controllers
                 requestContent = await reader.ReadToEndAsync();
             }
             request.Body.Position = 0;
-
-            //TODO: Remove printtest
-            Console.WriteLine($"API call succesfull: {requestContent}");
 
             ContactMail? contactMail = JsonSerializer.Deserialize<ContactMail>(requestContent);
 
@@ -63,16 +59,25 @@ namespace Setup.Controllers
                 return BadRequest(jsonResponse);
             }
 
-            //TODO: reënable mail sending
-            //Execute(contactMail).Wait();
+            if (CaptchaVerificationResult == 1)
+            {
+                //TODO: reënable mail sending
+                Execute(contactMail).Wait();
 
-            jsonResponse = JsonSerializer.Serialize("Email sent succesfully");
-            return Ok(jsonResponse);
+                jsonResponse = JsonSerializer.Serialize("Email sent succesfully");
+                return Ok(jsonResponse);
+            }
+
+            jsonResponse = JsonSerializer.Serialize("Something went wrong");
+            return StatusCode(500, jsonResponse);
         }
 
         /// <summary>
         /// Connects with Google ReCAPTCHA API to verify user CAPTCHA.
         /// Returns int indicating if ReCAPTCHA verification was passed succesfully.
+        /// For more info:
+        /// https://developers.google.com/recaptcha/docs/verify
+        /// https://www.youtube.com/watch?v=t-SVLZxC6CQ
         /// </summary>
         /// <returns> int: -1 = SecretKey Failure, 0 = CAPTCHA failed, 1 = CAPTCHA passed </returns>
         public async Task<int> VerifyReCaptcha(ContactMail contactMail)
@@ -94,25 +99,19 @@ namespace Setup.Controllers
             // <-- Construct reCAPTCHA API verification and Execute -->
             string responseToken = contactMail.Verification;
             string recaptchaUrl = "https://www.google.com/recaptcha/api/siteverify"; // URL to the reCAPTCHA server
-            HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), recaptchaUrl);
+            string fullRequestUrl = $"{recaptchaUrl}?secret={recaptchaSecret}&response={responseToken}";
 
-            // https://www.youtube.com/watch?v=t-SVLZxC6CQ
-            // https://developers.google.com/recaptcha/docs/verify
+            var httpResult = await client.GetAsync(fullRequestUrl);
+            if (httpResult.StatusCode != HttpStatusCode.OK) return 0;
 
+            var responseString = await httpResult.Content.ReadAsStringAsync();
+            ReCaptchaResponse? googleResult = JsonSerializer.Deserialize<ReCaptchaResponse>(responseString);
 
+            if (googleResult == null) return 0;
 
-            //string recaptchaResponse = contactMail.Verification;
-            //recaptcha = file_get_contents($recaptcha_url.'?secret='.$recaptcha_secret.'&response='.$recaptcha_response); // Send request to the server
-            //$recaptcha = json_decode($recaptcha); // Decode the JSON response
-            //if ($recaptcha->success == true && $recaptcha->score >= 0.5 && $recaptcha->action == "contact"){ // If the response is valid
-            //    // run email send routine
-            //    $success_output = 'Your message was sent successfully.'; // Success message
-            //}else
-            //{
-            //    $error_output = 'Something went wrong. Please try again later'; // Error message
-            //}
+            if (googleResult.success && googleResult.score > 0.5) return 1;
 
-            return 1;
+            return 0;
         }
 
         static async Task Execute(ContactMail contactMail)
@@ -146,6 +145,7 @@ namespace Setup.Controllers
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
 
+            //TODO: properly handle SendGrid Response
             Console.WriteLine(response);
         }
     }

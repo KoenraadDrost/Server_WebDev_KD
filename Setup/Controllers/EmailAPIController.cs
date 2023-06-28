@@ -13,9 +13,9 @@ using System.Net;
 namespace Setup.Controllers
 {
     // <hostingUrl>/api/Email
-    [Route("api/[controller]")]
+    [Route("api/Email")]
     [ApiController]
-    public class EmailController : ControllerBase
+    public class EmailAPIController : ControllerBase
     {
         private static readonly HttpClient client = new HttpClient();
         // To keep API-keys from public and GitRepo.
@@ -45,25 +45,22 @@ namespace Setup.Controllers
                 return BadRequest(jsonResponse);
             }
 
-            int CaptchaVerificationResult = await VerifyReCaptcha(contactMail);
+            
+            string jsonString = JsonSerializer.Serialize<string>(contactMail.Verification);
+            HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7095/api/Captcha");
+            httpRequest.Content = new StringContent(jsonString);
 
-            if (CaptchaVerificationResult == -1)
+            HttpResponseMessage response = await client.SendAsync(httpRequest);
+            if(response.StatusCode != HttpStatusCode.OK)
             {
-                jsonResponse = JsonSerializer.Serialize("ERROR: reCaptcha sk1");
-                return BadRequest(jsonResponse);
+                return BadRequest(response);
             }
 
-            if (CaptchaVerificationResult == 0)
-            {
-                jsonResponse = JsonSerializer.Serialize("ERROR: Captcha failed");
-                return BadRequest(jsonResponse);
-            }
+            //TODO: reënable mail sending
+            bool emailSucces = await SendGridExecute(contactMail);
 
-            if (CaptchaVerificationResult == 1)
+            if (emailSucces)
             {
-                //TODO: reënable mail sending
-                Execute(contactMail).Wait();
-
                 jsonResponse = JsonSerializer.Serialize("Email sent succesfully");
                 return Ok(jsonResponse);
             }
@@ -72,55 +69,18 @@ namespace Setup.Controllers
             return StatusCode(500, jsonResponse);
         }
 
+
         /// <summary>
-        /// Connects with Google ReCAPTCHA API to verify user CAPTCHA.
-        /// Returns int indicating if ReCAPTCHA verification was passed succesfully.
-        /// For more info:
-        /// https://developers.google.com/recaptcha/docs/verify
-        /// https://www.youtube.com/watch?v=t-SVLZxC6CQ
+        /// Send Email via SendGRid.
         /// </summary>
-        /// <returns> int: -1 = SecretKey Failure, 0 = CAPTCHA failed, 1 = CAPTCHA passed </returns>
-        public async Task<int> VerifyReCaptcha(ContactMail contactMail)
-        {
-            // <-- Preperation for reCAPTCHA Verification request -->
-            string recaptchaSecret = ""; // Secret key
-            using (StreamReader r = new StreamReader(path))
-            {
-                string json = r.ReadToEnd();
-                JsonNode keyNode = JsonNode.Parse(json)!;
-                recaptchaSecret = (string)keyNode!["ReCaptchaSecret"]!;
-            }
-
-            if(recaptchaSecret == "")
-            {
-                return -1;
-            }
-
-            // <-- Construct reCAPTCHA API verification and Execute -->
-            string responseToken = contactMail.Verification;
-            string recaptchaUrl = "https://www.google.com/recaptcha/api/siteverify"; // URL to the reCAPTCHA server
-            string fullRequestUrl = $"{recaptchaUrl}?secret={recaptchaSecret}&response={responseToken}";
-
-            var httpResult = await client.GetAsync(fullRequestUrl);
-            if (httpResult.StatusCode != HttpStatusCode.OK) return 0;
-
-            var responseString = await httpResult.Content.ReadAsStringAsync();
-            ReCaptchaResponse? googleResult = JsonSerializer.Deserialize<ReCaptchaResponse>(responseString);
-
-            if (googleResult == null) return 0;
-
-            if (googleResult.success && googleResult.score > 0.5) return 1;
-
-            return 0;
-        }
-
-        static async Task Execute(ContactMail contactMail)
+        /// <param name="contactMail"></param>
+        /// <returns></returns>
+        static async Task<bool> SendGridExecute(ContactMail contactMail)
         {
             var verifiedEmailSenderAddress = "kdr.entertainment.dev@gmail.com";
             var emailReceiverAddress = "kdr.devmail@gmail.com";
 
             // To keep API-keys from public and GitRepo.
-
             var sendgridApiKey = "";
             using (StreamReader r = new StreamReader(path))
             {
@@ -132,7 +92,7 @@ namespace Setup.Controllers
             if (sendgridApiKey == "")
             {
                 Console.WriteLine("send apikey is empty.");
-                return;
+                return false;
             }
 
             var client = new SendGridClient(sendgridApiKey);
@@ -146,7 +106,8 @@ namespace Setup.Controllers
             var response = await client.SendEmailAsync(msg);
 
             //TODO: properly handle SendGrid Response
-            Console.WriteLine(response);
+            if(response.StatusCode == HttpStatusCode.Accepted) return true;
+            return false;
         }
     }
 }

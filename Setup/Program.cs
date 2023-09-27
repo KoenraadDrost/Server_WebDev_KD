@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Setup.DAL;
+using Setup.Models;
+
 var KdrAllowedOrigins = "_kdrAllowedOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +25,21 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("ServerDb");
+builder.Services.AddDbContext<ServerContext>(x => x.UseSqlite(connectionString));
+
+// Identity Options for User Accounts
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Password Requirements
+    options.Password.RequiredLength = 8;
+
+    // Lockout Settings
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
+});
 
 var app = builder.Build();
 

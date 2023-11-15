@@ -63,14 +63,6 @@
               "target": "Package",
               "version": "[7.0.11, )"
             },
-            "NUnit": {
-              "target": "Package",
-              "version": "[3.14.0, )"
-            },
-            "NUnit3TestAdapter": {
-              "target": "Package",
-              "version": "[4.5.0, )"
-            },
             "SendGrid": {
               "target": "Package",
               "version": "[9.28.1, )"

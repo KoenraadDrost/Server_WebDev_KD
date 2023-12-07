@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Setup.DAL;
 using Setup.Models;
 
@@ -24,10 +25,23 @@ builder.Services.AddCors(options =>
 });
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("ServerDb");
-builder.Services.AddDbContext<ServerContext>(x => x.UseSqlite(connectionString));
+string? connectionString = builder.Configuration.GetConnectionString("ServerDb");
+builder.Services.AddDbContext<ServerContext>(options =>
+    options.UseSqlite(connectionString));
+
+builder.Services.AddDefaultIdentity<User>(options =>
+{
+    options.Password.RequiredLength = 8;
+})
+.AddEntityFrameworkStores<ServerContext>();
+
+//builder.Services.AddIdentity<UserAccount, IdentityRole>(options =>
+//{
+
+//});
+builder.Services.AddScoped<SignInManager<User>, SignInManager<User>>();
+builder.Services.AddScoped<UserManager<User>, UserManager<User>>();
 
 // Identity Options for User Accounts
 builder.Services.Configure<IdentityOptions>(options =>
@@ -40,6 +54,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
 });
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 

@@ -14,7 +14,7 @@ namespace Setup.Models
         private string _ConfirmPassword;
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+        [StringLength(100, ErrorMessage = "Username doesn't have the required length, please try a different username.", MinimumLength = 2)]
         [Display(Name = "Username")]
         public string Username
         {
@@ -46,7 +46,7 @@ namespace Setup.Models
         }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
+        [StringLength(100, ErrorMessage = "Password not strong enough to be secure, please try a different password.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password

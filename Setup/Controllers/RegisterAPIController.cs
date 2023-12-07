@@ -12,7 +12,7 @@ using System.Text.Json;
 
 namespace Setup.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Register")]
     [ApiController]
     public class RegisterAPIController : ControllerBase
     {
@@ -25,18 +25,18 @@ namespace Setup.Controllers
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
 
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly IUserStore<User> _userStore;
+        private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterAPIController> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterAPIController(
-            SignInManager<IdentityUser> signInManager, 
-            UserManager<IdentityUser> userManager, 
-            IUserStore<IdentityUser> userStore, 
-            IUserEmailStore<IdentityUser> emailStore, 
+            SignInManager<User> signInManager, 
+            UserManager<User> userManager, 
+            IUserStore<User> userStore, 
+            IUserEmailStore<User> emailStore, 
             ILogger<RegisterAPIController> logger, 
             IEmailSender emailSender)
         {
@@ -49,7 +49,7 @@ namespace Setup.Controllers
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public InputModel? Input { get; set; }
 
         // Probably don't need this, as Ít's only used for page controlers, not API.
         public string ReturnUrl { get; set; }
@@ -58,13 +58,13 @@ namespace Setup.Controllers
         // public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
 
-        public async Task OnGetAsync(string returnUrl = null)
-        {
-            ReturnUrl = returnUrl;
-            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        }
+        //public async Task OnGetAsync(string returnUrl = null)
+        //{
+        //    ReturnUrl = returnUrl;
+        //    //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+        //}
 
-        public async Task<ObjectResult> OnPostAsync(string returnUrl = null)
+        public async Task<ObjectResult> OnPostAsync()
         {
             string jsonResponse;
 
@@ -79,10 +79,9 @@ namespace Setup.Controllers
             request.Body.Position = 0;
 
             // Catch if received register information is invalid
-            InputModel? input;
             try
             {
-                input = JsonSerializer.Deserialize<InputModel>(requestContent);
+                Input = JsonSerializer.Deserialize<InputModel>(requestContent);
             }
             catch (Exception e)
             {
@@ -95,78 +94,78 @@ namespace Setup.Controllers
             {
                 var user = new User();
 
-                await _userStore.SetUserNameAsync(user, input.Username, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, input.Password);
+                await _userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                var result = await _userManager.CreateAsync(user, Input.Password);
 
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
+                //if (result.Succeeded)
+                //{
+                //    _logger.LogInformation("User created a new account with password.");
 
-                    // TODO: convert E-mail confirmation to propper MVC.
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                //    // TODO: convert E-mail confirmation to propper MVC.
+                //    var userId = await _userManager.GetUserIdAsync(user);
+                //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                //    var callbackUrl = Url.Page(
+                //        "/Account/ConfirmEmail",
+                //        pageHandler: null,
+                //        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                //        protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                //    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                //        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                }
+                //}
             }
 
                 // <-- copied code from microsoft below -->
 
-                returnUrl ??= Url.Content("~/");
+            //returnUrl ??= Url.Content("~/");
             //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
-            {
-                var user = CreateUser();
+            //if (ModelState.IsValid)
+            //{
+                //var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                //var result = await _userManager.CreateAsync(user, Input.Password);
 
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
+                //if (result.Succeeded)
+                //{
+                //    _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                //    var userId = await _userManager.GetUserIdAsync(user);
+                //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                //    var callbackUrl = Url.Page(
+                //        "/Account/ConfirmEmail",
+                //        pageHandler: null,
+                //        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                //        protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                //    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                //        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
+                //    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                //    {
+                //        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                //    }
+                //    else
+                //    {
+                //        await _signInManager.SignInAsync(user, isPersistent: false);
+                //        return LocalRedirect(returnUrl);
+                //    }
+                //}
+                //foreach (var error in result.Errors)
+                //{
+                //    ModelState.AddModelError(string.Empty, error.Description);
+                //}
+            //}
 
             // If we got this far, something failed, redisplay form
-            jsonResponse = JsonSerializer.Serialize("Something went wrong");
-            return StatusCode(500, jsonResponse);
-            jsonResponse = JsonSerializer.Serialize("Register Succesfull");
+            //jsonResponse = JsonSerializer.Serialize("Something went wrong");
+            //return StatusCode(500, jsonResponse);
+            //jsonResponse = JsonSerializer.Serialize("Register Succesfull");
             return Ok("Register Succesfull");
         }
 

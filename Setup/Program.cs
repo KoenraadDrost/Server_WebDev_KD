@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Setup.Data;
+
 var KdrAllowedOrigins = "_kdrAllowedOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +23,10 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+string? connectionString = builder.Configuration.GetConnectionString("ServerDb");
+builder.Services.AddDbContext<ServerContext>(options =>
+    options.UseSqlite(connectionString));
 
 var app = builder.Build();
 

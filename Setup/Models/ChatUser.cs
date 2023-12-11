@@ -7,7 +7,7 @@ namespace Setup.Models
     // Create this user model as a Subclass of default Authentication.Account. [Pending]
     // Add link to "Player" for the game and other User specific data not standard in default Account class. [Pending]
 
-    public class User : IdentityUser
+    public class ChatUser : IdentityUser
     {
 
     }

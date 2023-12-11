@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Setup.Data;
+using Setup.Models;
 
 var KdrAllowedOrigins = "_kdrAllowedOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
 
 // TODO: Might want to change cors routing to safer method later
 builder.Services.AddCors(options =>
@@ -21,12 +25,14 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 string? connectionString = builder.Configuration.GetConnectionString("ServerDb");
 builder.Services.AddDbContext<ServerContext>(options =>
     options.UseSqlite(connectionString));
+
+builder.Services.AddIdentity<ChatUser, IdentityRole>()
+    .AddUserStore<ServerContext>();
 
 var app = builder.Build();
 

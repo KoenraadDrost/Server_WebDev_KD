@@ -1,0 +1,40 @@
+﻿﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register Index</h2>
+
+<form asp-action="Submit" method="post" class="">
+
+    @*
+    <div class="">
+        <label for="username">Gebruikersnaam: </label>
+        <input type="text" name="username" id="name" required minlength="2"
+               placeholder="gebruiker_123">
+    </div>
+    *@
+
+    <div class="">
+        <label for="email">Emailadres:</label>
+        <input type="email" name="email" id="email" required minlength="8"
+               placeholder="naam@emailadress.nl">
+        <span class="error" aria-live="polite"></span>
+    </div>
+
+    <div class="">
+        <label for="password">Wachtwoord:</label>
+        <input type="password" name="password" id="password" required minlength="8"
+               placeholder="****">
+    </div>
+
+    <div class="">
+        <label for="confirmpassword">Herhaal Wachtwoord:</label>
+        <input type="password" name="confirmpassword" id="confirmpassword" required minlength="8"
+               placeholder="****">
+    </div>
+
+    <div class="">
+        <input class="" type="submit" value="Registreer">
+    </div>
+
+</form>

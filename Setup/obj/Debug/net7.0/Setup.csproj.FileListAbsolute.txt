@@ -329,3 +329,5 @@ D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Microsoft.Ext
 D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\System.CodeDom.dll
 D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.MvcApplicationPartsAssemblyInfo.cs
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\bin\Debug\net7.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+D:\GitHub_Repos\WebDev2023\Server_WebDev_KD\Setup\obj\Debug\net7.0\Setup.sourcelink.json

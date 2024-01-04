@@ -62,16 +62,17 @@ namespace Setup.Controllers
 
             var user = CreateUser();
 
-            await _userStore.SetUserNameAsync(user, InputUser.Email, CancellationToken.None);
+            await _userStore.SetUserNameAsync(user, InputUser.Username, CancellationToken.None);
             await _emailStore.SetEmailAsync(user, InputUser.Email, CancellationToken.None);
             var result = await _userManager.CreateAsync(user, InputUser.Password);
 
             if (result.Succeeded)
             {
                 _logger.LogInformation("User created a new account with password.");
+                return Ok("Register Succesfull");
             }
 
-            return Ok("Register Succesfull");
+            return Ok("Register Succesfull??");
         }
 
         //public IHttpActionResult Post(RegisterApiModel model)

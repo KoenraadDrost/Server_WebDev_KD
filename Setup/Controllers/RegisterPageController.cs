@@ -27,7 +27,6 @@ namespace Setup.Controllers
             HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7095/api/Register");
             httpRequest.Content = new StringContent(jsonString);
 
-            //client.SendAsync(httpRequest).Wait();
             var response = await client.SendAsync(httpRequest);
 
             return View("~/Views/Account/Register.cshtml");

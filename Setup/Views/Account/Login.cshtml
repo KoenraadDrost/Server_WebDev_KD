@@ -1,38 +1,42 @@
 ﻿﻿@{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Login";
 }
 
-<h2>Register Page</h2>
+<h2>Login Page</h2>
 
 <form asp-action="Submit" method="post" class="">
 
+    @*
     <div class="form-floating mb-3">
         <label for="username">Gebruikersnaam: </label>
         <input type="text" name="username" id="name" autocomplete="username" required minlength="2"
                placeholder="gebruiker_123">
     </div>
+    *@
 
     <div class="form-floating mb-3">
         <label for="email">Emailadres:</label>
-        <input type="email" name="email" id="email" autocomplete="email" required minlength="8"
+        <input type="email" name="email" id="email" autocomplete="username" required minlength="8"
                placeholder="naam@emailadress.nl">
         <span class="error" aria-live="polite"></span>
     </div>
 
     <div class="form-floating mb-3">
         <label for="password">Wachtwoord:</label>
-        <input type="password" name="password" id="password" autocomplete="new-password" required minlength="8"
+        <input type="password" name="password" id="password" autocomplete="current-password" required minlength="8"
                placeholder="****">
     </div>
 
-    <div class="form-floating mb-3">
-        <label for="confirmpassword">Herhaal Wachtwoord:</label>
-        <input type="password" name="confirmpassword" id="confirmpassword" autocomplete="new-password" required minlength="8"
-               placeholder="****">
+    <div class="checkbox mb-3">
+        <label for="">Gegevens Onthouden?:</label>
+        <input type="checkbox" name="rememberme" id="rememberme" class="form-check-input" />
     </div>
 
     <div class="">
-        <input id="registerSubmit" type="submit" value="Registreer">
+        <input id="login-submit" type="submit" value="Login" class="w-100 btn btn-lg btn-primary">
     </div>
-
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -52,7 +52,7 @@ namespace Setup.Controllers
             var result = await _signInManager.PasswordSignInAsync(InputUser.Email, InputUser.Password, InputUser.RememberMe, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                bool check = _signInManager.IsSignedIn(User);
+                //bool check = _signInManager.IsSignedIn(User);
                 _logger.LogInformation("User logged in.");
                 //Response.Cookies.Append();
                 return Ok("Login succesfull");

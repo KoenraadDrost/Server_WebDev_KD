@@ -23,7 +23,7 @@ namespace Setup.Controllers
         public IActionResult Submit(ContactMail contactMail )
         {
             string jsonString = JsonSerializer.Serialize<ContactMail>(contactMail);
-            HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7095/api/Email");
+            HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7095/api/Email/Send");
             httpRequest.Content = new StringContent(jsonString);
 
             client.SendAsync(httpRequest).Wait();

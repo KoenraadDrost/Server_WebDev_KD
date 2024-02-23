@@ -4,42 +4,44 @@ namespace Setup.Models
 {
     public class UserLoginModel
     {
-        //private string _Username;
+        public string Verification { get; set; }
+
+        private string _Username;
         private string _Email;
         private string _Password;
         private bool _RememberMe;
 
-        //[Required]
-        //[StringLength(100, ErrorMessage = "Username doesn't have the required length, please try a different username.", MinimumLength = 2)]
-        //[Display(Name = "Username")]
-        //public string Username
-        //{
-        //    get { return _Username; }
-        //    set
-        //    {
-        //        Validator.ValidateProperty(value, new ValidationContext(this, null, null)
-        //        {
-        //            MemberName = "Username",
-        //        });
-        //        _Username = value;
-        //    }
-        //}
-
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email
+        [StringLength(100, ErrorMessage = "Username doesn't have the required length, please try a different username.", MinimumLength = 2)]
+        [Display(Name = "Username")]
+        public string Username
         {
-            get => _Email;
+            get { return _Username; }
             set
             {
                 Validator.ValidateProperty(value, new ValidationContext(this, null, null)
                 {
-                    MemberName = "Email",
+                    MemberName = "Username",
                 });
-                _Email = value;
+                _Username = value;
             }
         }
+
+        //[Required]
+        //[EmailAddress]
+        //[Display(Name = "Email")]
+        //public string Email
+        //{
+        //    get => _Email;
+        //    set
+        //    {
+        //        Validator.ValidateProperty(value, new ValidationContext(this, null, null)
+        //        {
+        //            MemberName = "Email",
+        //        });
+        //        _Email = value;
+        //    }
+        //}
 
         [Required]
         [StringLength(100, ErrorMessage = "Password not strong enough to be secure, please try a different password.", MinimumLength = 8)]

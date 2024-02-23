@@ -22,9 +22,11 @@ namespace Setup.Controllers
         private static readonly string jsonFileName = "APIkey.json";
         private static readonly string path = Path.Combine(Environment.CurrentDirectory, @"..\Restricted\", jsonFileName);
 
-        [HttpPost]
+        [HttpPost("Send")]
         public async Task<ObjectResult> PostAsync()
         {
+            Console.WriteLine("Incoming Email request through POST.");
+
             string jsonResponse;
 
             // <-- Deserialize the requestdata and turn it into an Contactmail implementation -->
@@ -45,7 +47,7 @@ namespace Setup.Controllers
                 return BadRequest(jsonResponse);
             }
 
-            
+            // <-- Check ReCaptcha verification -->
             string jsonString = JsonSerializer.Serialize<string>(contactMail.Verification);
             HttpRequestMessage httpRequest = new HttpRequestMessage(new HttpMethod("POST"), "https://localhost:7095/api/Captcha");
             httpRequest.Content = new StringContent(jsonString);
@@ -56,7 +58,7 @@ namespace Setup.Controllers
                 return BadRequest(response);
             }
 
-            //TODO: reënable mail sending
+            // <-- Send Email through SendGrid -->
             bool emailSucces = await SendGridExecute(contactMail);
 
             if (emailSucces)
